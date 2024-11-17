@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+
+class Number_Guessing_Game {
+    private static final int Total_Attempts=10;
+    private static final int Min_Range=1;
+    private static final int Max_Range=100;
+    private static final int Total_Rounds=3;
+    
+    
+	public static void main (String[] args) {
+    Scanner s=new Scanner(System.in);
+	  Random rand=new Random();
+    int total_score=0,score=10;	 
+    System.out.println("***********NUMBER GUESSING GAME ****************");
+	  System.out.println("Total number of rounds "+Total_Rounds);
+	  System.out.println("Total number of attempts in a Round are : "+Total_Attempts);
+	    
+
+		for(int i=0;i<Total_Rounds;i++){
+	  int attempts=0;
+		System.out.println("Round "+i+" : Guess the number is between "+Min_Range+" and "+Max_Range);
+		int number=rand.nextInt(Max_Range)+Min_Range;
+		while(attempts<Total_Attempts){
+		System.out.println("Enter your guessed number : ");
+		int input=s.nextInt();
+		attempts++;
+		if(input==number){
+		    score=Total_Attempts-attempts;
+		    total_score=score+total_score;
+		    System.out.println("Hurray !! You guessed the right number with "+attempts+" attempts and "+score+" total_score");   
+		    break;
+		}
+		else if(input<number){
+		    System.out.println("The number is less than the expected number and "+(Total_Attempts-attempts)+" attempts are left ");
+		}
+		else{ 
+		    System.out.println("The number is greater than the expected number and "+(Total_Attempts-attempts)+" attempts are left ");
+		}
+		if(Total_Attempts==attempts){
+		    System.out.println("The number is "+number);
+		    System.out.println("Round "+i);
+		    System.out.println("the attempts you made are "+attempts);
+		}
+		}
+		}
+	}
+}
